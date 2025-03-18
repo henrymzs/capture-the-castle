@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capture the Castle</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-size: 1rem;
+            line-height: 1.2;
+            background-color: #0D1117;
+            margin: 5% auto;
+            padding: 20px;
+            width: 80%;
+            color: #FFFFFF;
+        }
+
+        .header_title {
+            text-align: center;
+        }
+
+        .header_rounds {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+        }
+
+        .reset-btn {
+            cursor: pointer;
+            padding: 0.4rem;
+            background-color: transparent;
+            border-style: solid;
+            border-color: #1F6FEB;
+            cursor: pointer;
+            border-radius: 8px;
+            width: 6rem;
+            color: #1F6FEB
+        }
+
+        .reset-btn:hover {
+            background-color: #1F6FEB;
+            color: #FFFFFF;
+        }
+
+        .display_game {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            
+        }
+
+        .player_boll {
+            margin-top: 20px;
+            background-color: #BBBBBB;
+            width: 80px;
+            height: 80px;
+            border-radius: 80px;
+            margin: 10px;
+        }
+
+        .player {
+            text-align: center;
+        }
+
+        .computer_boll {
+            margin-top: 20px;
+            background-color: #BBBBBB;
+            width: 80px;
+            height: 80px;
+            border-radius: 80px;
+            margin: 10px;
+        }
+
+        .image_game img{
+            width: 100px;
+            border-radius: 20px;
+        }
+
+        .player_text {
+            color: #8a8a8a;
+            font-size: 1.2rem; 
+        }
+
+        .boll_points {
+            display: none;
+        }
+
+        .choose_class {
+            padding: 20px;
+            margin: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .choose_text {
+            font-size: 1.4rem;
+        }
+
+        .class_selection img{
+            width: 100px;
+            padding: 10px;
+            display: flex;
+            gap: 100px;
+        }
+
+        .class {
+            display: flex;
+            padding: 10px;
+            margin-top: 50px;
+        }
+
+        .class_selection {
+            transition: all 0.4s;
+        }
+
+        .class_selection:hover {
+            transform: scale(1.2);
+        }
+
+        @media (min-width: 80em) {
+            .display_game {
+                border: 1px solid rgb(14, 122, 11);
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+            }
+
+            .player_boll {
+                width: 180px;
+                height: 180px;
+                border-radius: 50%;
+            }
+
+            .computer_boll {
+                width: 180px;
+                height: 180px;
+                border-radius: 50%;
+            }
+
+            .image_game img{
+                width: 220px;
+                border-radius: 20%;
+            }
+
+            .header_rounds {
+                justify-content: space-evenly;
+            }
+
+            .player_points {
+                display: none;
+            }
+
+            .boll_points {
+                margin: 30px;
+                display: flex;
+                justify-content: center;
+                align-items: flex-end;
+                gap: 25px;                
+            }
+
+            .boll_player {
+                background-color: #1F6FEB;
+            }
+
+            .boll_computer {
+                background-color: #eb1f1f;
+            }
+
+            .base_castle {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 10px;
+            }
+
+            .home {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            .boll {
+                height: 100px;
+                width: 100px;
+                border-radius: 50%;
+                flex-shrink: 0;
+            }
+
+            .boll img {
+                width: 60px;
+            }
+
+            
+
+            
+        }
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header_title">
+            <h1>Capture o Castelo</h1>
+        </div>
+
+        <div class="header_rounds">
+            <h2>Round:<span class="round">1</span></h2>
+            <button class="reset-btn">Reiniciar</button>
+        </div>
+        
+    </header>
+
+
+    <main>
+        <section class="display_game">
+            <div class="player">
+                <span class="player_text">Você</span>
+                <div class="player_boll"></div>
+                <span class="player_pooints">Pontos:0</span>
+            </div>
+
+            <div class="image_game">
+                <img src="./assets/rules.png" alt="">
+            </div>
+
+            <div class="message_battle">...</div>
+
+            <div class="player">
+                <span class="player_text">Oponente</span>
+                <div class="computer_boll"></div>
+                <span class="player_pooints">Pontos:0</span>
+            </div>
+
+           
+
+        </section>
+
+
+        <section class="boll_points">
+            <div class="base_castle">
+                <span>Seu Castelo</span>
+                <div id="n1" class="boll_player boll home">
+                    <img src="./assets/castle.png" alt="">
+                </div>
+            </div>
+            <div id="n2" class="boll_player boll"></div>
+            <div id="n3" class="boll_player boll"></div>
+            <div id="n4" class="boll_player boll"></div>
+            <div id="n5" class="boll_player boll"></div>
+            <div id="n6" class="boll_computer boll"></div>
+            <div id="n7" class="boll_computer boll"></div>
+            <div id="n8" class="boll_computer boll"></div>
+            <div id="n9" class="boll_computer boll"></div>
+            <div class="base_castle">
+                <span>Castelo Inimigo</span>
+                <div id="n10" class="boll_computer boll home">
+                    <img src="./assets/castle.png" alt="">
+                </div>
+            </div>
+        </section>
+
+        <section class="choose_class">
+            <span class="choose_text">Escolha sua Classe</span>
+
+            <div class="class">
+                <div class="class_selection">
+                    <img src="./assets/vanguard.png" alt="">
+                    <span>Cavaleiro</span>
+                </div>
+                <div class="class_selection">
+                    <img src="./assets/ranged.png" alt="">
+                    <span>Mago</span>
+                </div>
+                <div class="class_selection">
+                    <img src="./assets/defense.png" alt="">
+                    <span>Defensor</span>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

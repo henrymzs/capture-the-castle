@@ -54,6 +54,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            text-align: center;
             gap: 2rem;
             
         }
@@ -130,10 +131,20 @@
 
         @media (min-width: 80em) {
             .display_game {
-                border: 1px solid rgb(14, 122, 11);
                 display: flex;
                 flex-direction: row;
-                justify-content: space-around;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .header_rounds {
+                justify-content: space-evenly;
+            }
+
+            .player {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
             }
 
             .player_boll {
@@ -151,10 +162,7 @@
             .image_game img{
                 width: 220px;
                 border-radius: 20%;
-            }
-
-            .header_rounds {
-                justify-content: space-evenly;
+                margin-top: 50px;
             }
 
             .player_points {
@@ -198,13 +206,15 @@
                 flex-shrink: 0;
             }
 
+            .message_battle {
+                font-size: 20px;
+                text-align: center;
+               margin-top: 20px;
+            }
+
             .boll img {
                 width: 60px;
             }
-
-            
-
-            
         }
 
 
@@ -226,26 +236,29 @@
 
     <main>
         <section class="display_game">
-            <div class="player">
-                <span class="player_text">Você</span>
-                <div class="player_boll"></div>
-                <span class="player_pooints">Pontos:0</span>
-            </div>
+            
 
-            <div class="image_game">
-                <img src="./assets/rules.png" alt="">
-            </div>
+                <div class="player">
+                    <span class="player_text">Você</span>
+                    <div class="player_boll"></div>
+                    <span class="player_pooints">Pontos:0</span>
+                </div>
+    
+                <div class="image_game">
+                    <img src="./src/assets/rules.png" alt="">
+                    <div class="message_battle">...</div>
+                </div>
+    
+                
+    
+                <div class="player">
+                    <span class="player_text">Oponente</span>
+                    <div class="computer_boll"></div>
+                    <span class="player_pooints">Pontos:0</span>
+                </div>
+                
 
-            <div class="message_battle">...</div>
-
-            <div class="player">
-                <span class="player_text">Oponente</span>
-                <div class="computer_boll"></div>
-                <span class="player_pooints">Pontos:0</span>
-            </div>
-
-           
-
+            
         </section>
 
 
@@ -253,7 +266,7 @@
             <div class="base_castle">
                 <span>Seu Castelo</span>
                 <div id="n1" class="boll_player boll home">
-                    <img src="./assets/castle.png" alt="">
+                    <img src="./src/assets/castle.png" alt="">
                 </div>
             </div>
             <div id="n2" class="boll_player boll"></div>
@@ -267,7 +280,7 @@
             <div class="base_castle">
                 <span>Castelo Inimigo</span>
                 <div id="n10" class="boll_computer boll home">
-                    <img src="./assets/castle.png" alt="">
+                    <img src="./src/assets/castle.png" alt="">
                 </div>
             </div>
         </section>
@@ -277,15 +290,15 @@
 
             <div class="class">
                 <div class="class_selection">
-                    <img src="./assets/vanguard.png" alt="">
+                    <img src="./src/assets/vanguard.png" alt="">
                     <span>Cavaleiro</span>
                 </div>
                 <div class="class_selection">
-                    <img src="./assets/ranged.png" alt="">
+                    <img src="./src/assets/ranged.png" alt="">
                     <span>Mago</span>
                 </div>
                 <div class="class_selection">
-                    <img src="./assets/defense.png" alt="">
+                    <img src="./src/assets/defense.png" alt="">
                     <span>Defensor</span>
                 </div>
             </div>

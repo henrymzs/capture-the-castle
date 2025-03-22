@@ -1,0 +1,312 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 1rem;
+    line-height: 1.2;
+    background-color: #0D1117;
+    margin: 5% auto;
+    padding: 20px;
+    width: 80%;
+    color: #FFFFFF;
+}
+
+.header_title {
+    text-align: center;
+}
+
+.header_rounds {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.reset_btn {
+    cursor: pointer;
+    padding: 0.4rem;
+    background-color: transparent;
+    border-style: solid;
+    border-color: #1F6FEB;
+    cursor: pointer;
+    border-radius: 8px;
+    width: 6rem;
+    color: #1F6FEB
+}
+
+.reset_btn:hover {
+    background-color: #1F6FEB;
+    color: #FFFFFF;
+}
+
+.display_game {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+
+}
+
+.player_boll {
+    margin-top: 20px;
+    background-color: #BBBBBB;
+    width: 80px;
+    height: 80px;
+    border-radius: 80px;
+    margin: 10px;
+}
+
+.player {
+    text-align: center;
+}
+
+.computer_boll {
+    margin-top: 20px;
+    background-color: #BBBBBB;
+    width: 80px;
+    height: 80px;
+    border-radius: 80px;
+    margin: 10px;
+}
+
+.image_game img {
+    width: 100px;
+    border-radius: 20px;
+}
+
+.player_text {
+    color: #8a8a8a;
+    font-size: 1.2rem;
+}
+
+.boll_points {
+    display: none;
+}
+
+.choose_class {
+    padding: 20px;
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.choose_text {
+    font-size: 1.4rem;
+}
+
+.class_selection img {
+    width: 100px;
+    padding: 10px;
+    display: flex;
+    gap: 100px;
+}
+
+.class {
+    display: flex;
+    padding: 10px;
+    margin-top: 50px;
+}
+
+.class_selection {
+    transition: all 0.4s;
+}
+
+.class_selection:hover {
+    transform: scale(1.2);
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    border: 1px solid black;
+    border-radius: 10px;
+    z-index: 10;
+    background-color: white;
+    width: 400px;
+    max-width: 80%;
+}
+
+.modal.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.modal-header {
+    padding: 10px 15px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 1px solid black;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.modal-body {
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.stats {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.play-again {
+    align-self: center;
+}
+
+#overlay {
+    position: fixed;
+    opacity: 0;
+    transition: 200ms ease-in-out;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+}
+
+#overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.player_boll {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.player_boll img {
+    width: 50px;
+    height: 50px;
+}
+
+.computer_boll {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.computer_boll img {
+    width: 50px;
+    height: 50px;
+}
+
+@media (min-width: 80em) {
+    body {
+        margin: auto;
+        padding: 20px;
+        width: 90%;
+    }
+
+    .display_game {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .header_rounds {
+        justify-content: space-evenly;
+    }
+
+    .player {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .player_boll {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+    }
+
+    .computer_boll {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+    }
+
+    .image_game img {
+        width: 220px;
+        border-radius: 20%;
+        margin-top: 50px;
+    }
+
+    .player_points {
+        display: none;
+    }
+
+    .boll_points {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        gap: 25px;
+    }
+
+
+    .boll_player {
+        background-color: #1F6FEB;
+    }
+
+    .boll_computer {
+        background-color: #eb1f1f;
+    }
+
+    .base_castle {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .home {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .boll {
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
+
+    .message_battle {
+        font-size: 20px;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .boll img {
+        width: 60px;
+    }
+
+    .choose_class {
+        margin: 10px;
+    }
+
+    .class {
+        margin: 0;
+    }
+
+    .class_selection {
+        margin-bottom: 40px;
+    }
+}

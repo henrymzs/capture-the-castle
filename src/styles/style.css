@@ -105,6 +105,7 @@ body {
     padding: 10px;
     display: flex;
     gap: 100px;
+    cursor: pointer;
 }
 
 .class {
@@ -121,67 +122,13 @@ body {
     transform: scale(1.2);
 }
 
-.modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    transition: 200ms ease-in-out;
-    border: 1px solid black;
-    border-radius: 10px;
-    z-index: 10;
-    background-color: white;
-    width: 400px;
-    max-width: 80%;
-}
-
-.modal.active {
-    transform: translate(-50%, -50%) scale(1);
-}
-
-.modal-header {
-    padding: 10px 15px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    border-bottom: 1px solid black;
-    font-size: 30px;
-    font-weight: bold;
-}
-
-.modal-body {
-    padding: 10px 15px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
 .stats {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.play-again {
-    align-self: center;
-}
 
-#overlay {
-    position: fixed;
-    opacity: 0;
-    transition: 200ms ease-in-out;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    pointer-events: none;
-}
-
-#overlay.active {
-    opacity: 1;
-    pointer-events: all;
-}
 
 .player_boll {
     display: flex;
@@ -203,6 +150,80 @@ body {
 .computer_boll img {
     width: 50px;
     height: 50px;
+}
+
+#overlay {
+    position: fixed;
+    opacity: 0;
+    transition: 200ms ease-in-out;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+}
+
+#overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal{
+    position: fixed;
+    top: 50%;
+    max-width: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    border-radius: 8px;
+    z-index: 10;
+    background-color: #FFFFFF;
+    width: 400px;
+    color: #0D1117;
+}
+
+.modal.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.modal_header {
+    padding: 10px 15px;
+    border-bottom: 1px solid black;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.modal_body {
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.play_again {
+    align-self: center;
+}
+
+.play_again_button{
+    cursor: pointer;
+    padding: 0.4rem;
+    background-color: transparent;
+    border-style: solid;
+    border-color: #1F6FEB;
+    cursor: pointer;
+    border-radius: 8px;
+    width: 8rem;
+    color: #1F6FEB
+}
+
+.play_again_button:hover {
+    background-color: #1F6FEB;
+    color: #FFFFFF;
+}
+
+.stats span {
+    color: #0D1117;
 }
 
 @media (min-width: 80em) {

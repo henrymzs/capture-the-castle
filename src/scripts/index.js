@@ -61,10 +61,6 @@ function closeModal() {
     overlay.classList.remove('active');
 }
 
-function getIdxByValue(arr, value) {
-    return arr.findIndex((elem) => elem == value);
-}
-
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
@@ -74,14 +70,8 @@ function getComputerChoice() {
 }
 
 function playRound(playerChoice, computerChoice) {
-    console.log("Choices disponíveis:", choices);
-    console.log("Escolha do jogador:", playerChoice);
-
     let playerNum = choices.indexOf(playerChoice);
     let computerNum = choices.indexOf(computerChoice);
-
-    console.log("Player Choice:", playerChoice, "Index:", playerNum);
-    console.log("Computer Choice:", computerChoice, "Index:", computerNum);
 
     if (playerNum == computerNum) {
         drawScore++;
@@ -107,25 +97,24 @@ function playRound(playerChoice, computerChoice) {
 
     document.querySelector('.player_points').textContent = `Pontos: ${playerScore}`;
     document.querySelector('.computer_points').textContent = `Pontos: ${computerScore}`;
-
-
+    
     if (nodesCaptured == capturedNodesToWin || nodesCaptured == 0) {
         if (nodesCaptured == capturedNodesToWin) {
             modalHeader.textContent = "Você venceu!"
             modalMsg.textContent = "Você capturou o castelo inimigo";
         } else {
-            modalHeader.textContent = "You Lose!";
+            modalHeader.textContent = "Você Perdeu!";
             modalMsg.textContent = "O inimigo capturou o seu castelo";
         }
         drawMsg.textContent = drawScore;
         winMsg.textContent = playerScore;
         lossesMsg.textContent = computerScore;
         openModal();
+        
     }
 
 }
 function playGame(playerSelection) {
-
     round++;
     roundDisplay.textContent = round;
 

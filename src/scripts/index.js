@@ -29,7 +29,7 @@ const winMsg = document.querySelector(".wins");
 const lossesMsg = document.querySelector(".losses");
 const resetButton = document.querySelector(".reset_btn");
 
-const resetGame = () => {
+function resetGame() {
     playerPaddingDisplay.setAttribute("style", "background-color: #bbb;");
     computerPaddingDisplay.setAttribute("style", "background-color: #bbb;");
 
@@ -37,11 +37,15 @@ const resetGame = () => {
     computerImageDisplay.setAttribute("src", "");
     nodesCaptured = startCapturedNodes;
 
-    const playerDefaultNodes = document.querySelectorAll(".boll_player")
-    playerDefaultNodes.forEach((node) => { node.setAttribute("style", "background-color: #1F6FEB"); })
+    const playerDefaultNodes = document.querySelectorAll(".boll_player");
+    playerDefaultNodes.forEach((node) => { 
+        node.setAttribute("style", "background-color: #1F6FEB"); 
+    });
 
-    const computerDefaultNodes = document.querySelectorAll(".boll_computer")
-    computerDefaultNodes.forEach((node) => { node.setAttribute("style", "background-color: #eb1f1f"); })
+    const computerDefaultNodes = document.querySelectorAll(".boll_computer");
+    computerDefaultNodes.forEach((node) => { 
+        node.setAttribute("style", "background-color: #eb1f1f"); 
+    });
 
     round = 1;
     playerScore = 0;
@@ -59,10 +63,6 @@ function openModal() {
 function closeModal() {
     modal.classList.remove('active');
     overlay.classList.remove('active');
-}
-
-function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
 }
 
 function getComputerChoice() {
@@ -114,6 +114,7 @@ function playRound(playerChoice, computerChoice) {
     }
 
 }
+
 function playGame(playerSelection) {
     round++;
     roundDisplay.textContent = round;
@@ -125,7 +126,6 @@ function playGame(playerSelection) {
 
     playRound(playerSelection, computerSelection);
 }
-
 
 function main() {
 

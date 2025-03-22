@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Capture the Castle</title>
 
-    <style>
+<style>
         * {
             padding: 0;
             margin: 0;
@@ -32,7 +33,7 @@
             margin-top: 10px;
         }
 
-        .reset-btn {
+        .reset_btn {
             cursor: pointer;
             padding: 0.4rem;
             background-color: transparent;
@@ -44,7 +45,7 @@
             color: #1F6FEB
         }
 
-        .reset-btn:hover {
+        .reset_btn:hover {
             background-color: #1F6FEB;
             color: #FFFFFF;
         }
@@ -56,7 +57,7 @@
             align-items: center;
             text-align: center;
             gap: 2rem;
-            
+
         }
 
         .player_boll {
@@ -81,14 +82,14 @@
             margin: 10px;
         }
 
-        .image_game img{
+        .image_game img {
             width: 100px;
             border-radius: 20px;
         }
 
         .player_text {
             color: #8a8a8a;
-            font-size: 1.2rem; 
+            font-size: 1.2rem;
         }
 
         .boll_points {
@@ -108,7 +109,7 @@
             font-size: 1.4rem;
         }
 
-        .class_selection img{
+        .class_selection img {
             width: 100px;
             padding: 10px;
             display: flex;
@@ -129,7 +130,94 @@
             transform: scale(1.2);
         }
 
+        .modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            transition: 200ms ease-in-out;
+            border: 1px solid black;
+            border-radius: 10px;
+            z-index: 10;
+            background-color: white;
+            width: 400px;
+            max-width: 80%;
+        }
+
+        .modal.active {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .modal-header {
+            padding: 10px 15px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            border-bottom: 1px solid black;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .modal-body {
+            padding: 10px 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .stats {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .play-again {
+            align-self: center;
+        }
+
+        #overlay {
+            position: fixed;
+            opacity: 0;
+            transition: 200ms ease-in-out;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            pointer-events: none;
+        }
+
+        #overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .player_boll {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .player_boll img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .computer_boll {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .computer_boll img {
+            width: 50px;
+            height: 50px;
+            }
+
         @media (min-width: 80em) {
+            body {
+                margin: auto;
+                padding: 20px;
+                width: 90%;
+            }
+
             .display_game {
                 display: flex;
                 flex-direction: row;
@@ -159,7 +247,7 @@
                 border-radius: 50%;
             }
 
-            .image_game img{
+            .image_game img {
                 width: 220px;
                 border-radius: 20%;
                 margin-top: 50px;
@@ -170,13 +258,13 @@
             }
 
             .boll_points {
-                margin: 30px;
                 display: flex;
                 justify-content: center;
                 align-items: flex-end;
-                gap: 25px;                
+                gap: 25px;
             }
 
+           
             .boll_player {
                 background-color: #1F6FEB;
             }
@@ -198,7 +286,7 @@
                 justify-content: center;
                 align-items: center;
             }
-            
+
             .boll {
                 height: 100px;
                 width: 100px;
@@ -209,17 +297,28 @@
             .message_battle {
                 font-size: 20px;
                 text-align: center;
-               margin-top: 20px;
+                margin-top: 10px;
             }
 
             .boll img {
                 width: 60px;
             }
+
+            .choose_class {
+                margin: 10px;
+            }
+
+            .class {
+                margin: 0;
+            }
+
+            .class_selection {
+                margin-bottom: 40px;
+            }
         }
-
-
     </style>
 </head>
+
 <body>
     <header>
         <div class="header_title">
@@ -228,39 +327,30 @@
 
         <div class="header_rounds">
             <h2>Round:<span class="round">1</span></h2>
-            <button class="reset-btn">Reiniciar</button>
+            <button class="reset_btn">Reiniciar</button>
         </div>
-        
+
     </header>
 
 
     <main>
         <section class="display_game">
-            
+            <div class="player">
+                <span class="player_text">Você</span>
+                <div class="player_boll"><img></div>
+                <span class="player_points">Pontos:0</span>
+            </div>
 
-                <div class="player">
-                    <span class="player_text">Você</span>
-                    <div class="player_boll"></div>
-                    <span class="player_pooints">Pontos:0</span>
-                </div>
-    
-                <div class="image_game">
-                    <img src="./src/assets/rules.png" alt="">
-                    <div class="message_battle">...</div>
-                </div>
-    
-                
-    
-                <div class="player">
-                    <span class="player_text">Oponente</span>
-                    <div class="computer_boll"></div>
-                    <span class="player_pooints">Pontos:0</span>
-                </div>
-                
-
-            
+            <div class="image_game">
+                <img src="./src/assets/rules.png" alt="">
+                <div class="message_battle">...</div>
+            </div>
+            <div class="player">
+                <span class="player_text">Oponente</span>
+                <div class="computer_boll"><img></div>
+                <span class="player_points computer_points">Pontos:0</span>
+            </div>
         </section>
-
 
         <section class="boll_points">
             <div class="base_castle">
@@ -289,20 +379,199 @@
             <span class="choose_text">Escolha sua Classe</span>
 
             <div class="class">
-                <div class="class_selection">
+                <div class="class_selection" data-choice="vanguard">
                     <img src="./src/assets/vanguard.png" alt="">
                     <span>Cavaleiro</span>
                 </div>
-                <div class="class_selection">
+                <div class="class_selection" data-choice="ranged">
                     <img src="./src/assets/ranged.png" alt="">
                     <span>Mago</span>
                 </div>
-                <div class="class_selection">
+                <div class="class_selection" data-choice="defense">
                     <img src="./src/assets/defense.png" alt="">
                     <span>Defensor</span>
                 </div>
             </div>
         </section>
+
+        <section class="modal" id="modal">
+            <div class="modal_header"></div>
+            <div class="modal_body">
+                <div class="modal_message"></div>
+                <div class="stats">
+                    <div>Vitorias: <span class="wins"></span></div>
+                    <div>Derrotas: <span class="losses"></span></div>
+                    <div>Empates: <span class="draws"></span></div>
+                </div>
+                <div class="play_again"><button class="play_again_button">Jogar Novamente</button></div>
+            </div>
+        </section>
+
+        <div id="overlay"></div>
     </main>
 </body>
+
+<script>
+    const playerChoices = 3;
+    const startCapturedNodes = 5;
+    const capturedNodesToWin = 10;
+
+    const choices = ['vanguard', 'ranged', 'defense'];
+
+    let computerScore = 0;
+    let playerScore = 0;
+    let drawScore = 0;
+    let round = 1;
+    let nodesCaptured = startCapturedNodes;
+
+    const buttons = document.querySelectorAll('.class_selection');
+    const roundDisplay = document.querySelector('span.round');
+    const playerImageDisplay = document.querySelector(".player_boll img");
+    const computerImageDisplay = document.querySelector(".computer_boll img");
+    const playerPaddingDisplay = document.querySelector(".player_boll");
+    const computerPaddingDisplay = document.querySelector(".computer_boll");
+    const playerPointsDisplay = document.querySelector('.player_points');
+    const battleMsg = document.querySelector(".message_battle");
+
+    const closedModalButton = document.querySelector('.play_again_button');
+    const overlay = document.querySelector('#overlay');
+    const modal = document.querySelector('#modal');
+    const modalHeader = document.querySelector('.modal_header');
+    const modalMsg = document.querySelector('.modal_message');
+    const drawMsg = document.querySelector(".draws");
+    const winMsg = document.querySelector(".wins");
+    const lossesMsg = document.querySelector(".losses");
+    const resetButton = document.querySelector(".reset_btn");
+
+    const resetGame = () => {
+        playerPaddingDisplay.setAttribute("style", "background-color: #bbb;");
+        computerPaddingDisplay.setAttribute("style", "background-color: #bbb;");
+
+        playerImageDisplay.setAttribute("src", "");
+        computerImageDisplay.setAttribute("src", "");
+        nodesCaptured = startCapturedNodes;
+
+        const playerDefaultNodes = document.querySelectorAll(".boll_player")
+        playerDefaultNodes.forEach((node) => { node.setAttribute("style", "background-color: #1F6FEB"); })
+
+        const computerDefaultNodes = document.querySelectorAll(".boll_computer")
+        computerDefaultNodes.forEach((node) => { node.setAttribute("style", "background-color: #eb1f1f"); })
+
+        round = 1;
+        playerScore = 0;
+        computerScore = 0;
+        drawScore = 0;
+        roundDisplay.textContent = 1;
+
+    };
+
+    function openModal() {
+        modal.classList.add('active');
+        overlay.classList.add('active');
+    }
+
+    function closeModal() {
+        modal.classList.remove('active');
+        overlay.classList.remove('active');
+    }
+
+    function getIdxByValue(arr, value) {
+    return arr.findIndex( (elem) => elem == value );
+}
+
+    function getRandomInt(max) {
+        return Math.floor(Math.random() * max);
+    }
+
+    function getComputerChoice() {
+        return choices[Math.floor(Math.random() * choices.length)];
+    }
+
+    function playRound(playerChoice, computerChoice) {
+        console.log("Choices disponíveis:", choices);
+        console.log("Escolha do jogador:", playerChoice);
+
+        let playerNum = choices.indexOf(playerChoice);
+        let computerNum = choices.indexOf(computerChoice);
+
+        console.log("Player Choice:", playerChoice, "Index:", playerNum);
+        console.log("Computer Choice:", computerChoice, "Index:", computerNum);
+
+        if (playerNum == computerNum) {
+            drawScore++;
+            playerPaddingDisplay.setAttribute("style", "background-color: yellow");
+            computerPaddingDisplay.setAttribute("style", "background-color: yellow");
+            battleMsg.textContent = 'A batalha resultou em empate!';
+        } else if ((playerNum + 1) % playerChoices === computerNum) {
+            playerScore++;
+            nodesCaptured++;
+            const nodeElem = document.querySelector(`#n${nodesCaptured}`)
+            playerPaddingDisplay.setAttribute("style", "background-color: green");
+            computerPaddingDisplay.setAttribute("style", "background-color: red");
+            nodeElem.setAttribute("style", "background-color: blue")
+            battleMsg.textContent = 'Você venceu a batalha!';
+        } else {
+            computerScore++;
+            const nodeElem = document.querySelector(`#n${nodesCaptured--}`)
+            playerPaddingDisplay.setAttribute("style", "background-color: red");
+            computerPaddingDisplay.setAttribute("style", "background-color: green");
+            nodeElem.setAttribute("style", "background-color: red")
+            battleMsg.textContent = 'Você perdeu a batalha!';
+        }
+
+        document.querySelector('.player_points').textContent = `Pontos: ${playerScore}`;
+        document.querySelector('.computer_points').textContent = `Pontos: ${computerScore}`;
+
+
+        if (nodesCaptured == capturedNodesToWin || nodesCaptured == 0) {
+            if (nodesCaptured == capturedNodesToWin) {
+                modalHeader.textContent = "Você venceu!"
+                modalMsg.textContent = "Você capturou o castelo inimigo";
+            } else {
+                modalHeader.textContent = "You Lose!";
+                modalMsg.textContent = "O inimigo capturou o seu castelo";
+            }
+            drawMsg.textContent = drawScore;
+            winMsg.textContent = playerScore;
+            lossesMsg.textContent = computerScore;
+            openModal();
+        }
+
+    }
+    function playGame(playerSelection) {
+
+        round++;
+        roundDisplay.textContent = round;
+
+        const computerSelection = getComputerChoice();
+
+        playerImageDisplay.setAttribute("src", `./src/assets/${playerSelection}.png`);
+        computerImageDisplay.setAttribute("src", `./src/assets/${computerSelection}.png`);
+
+        playRound(playerSelection, computerSelection);
+    }
+
+
+    function main() {
+
+        buttons.forEach((button) => button.addEventListener("click", (e) => {
+            const playerSelection = e.currentTarget.dataset.choice;
+            playGame(playerSelection);
+        }));
+
+        const resetButton = document.querySelector(".reset_btn");
+        resetButton.addEventListener("click", resetGame);
+
+        closedModalButton.addEventListener("click",
+            () => {
+                closeModal();
+                resetGame();
+            }
+        )
+    }
+
+    main();
+
+</script>
+
 </html>
